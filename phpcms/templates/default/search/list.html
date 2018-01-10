@@ -1,0 +1,109 @@
+{template "content","header"}
+<!-- 热搜关键词 -->
+	<div id="myCarousel" class="carousel slide">
+		<ol class="carousel-indicators">
+		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		    <li data-target="#myCarousel" data-slide-to="1"></li>
+		    <li data-target="#myCarousel" data-slide-to="2"></li>
+		    <li data-target="#myCarousel" data-slide-to="3"></li>
+		</ol>   
+		<div class="carousel-inner">
+		    <div class="item active">
+		        <a><img src="{IMG_PATH}img/index/slider1.jpg" width="100%" alt="First slide"></a>
+		    </div>
+		    <div class="item">
+		        <a><img src="{IMG_PATH}img/index/slider2.jpg" width="100%" alt="Second slide"></a>
+		    </div>
+		    <div class="item">
+		        <a><img src="{IMG_PATH}img/index/slider3.jpg" width="100%" alt="Third slide"></a>
+		    </div>
+		    <div class="item">
+		        <a><img src="{IMG_PATH}img/index/slider4.jpg" width="100%" alt="fourth slide"></a>
+		    </div>
+		</div>
+		<div class="arrow">
+	    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+	    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		</div>  
+	</div>
+	
+	<div class="search">
+		<div class="container">
+			<div class="search-content clearfloat">
+				<ul class="search-keys clearfloat" style="">
+					<li>热搜关键词：</li>
+					<li><a href="#">托盘</a></li>
+					<li><a href="#">保鲜盒</a></li>
+					<li><a href="#">服务车</a></li>
+					<li><a href="#">整理箱</a></li>
+					<li><a href="#">筛</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="product-box">
+		<div class="container clearfloat">
+			<div class="row">
+				<div class="left-part col-xs-3" style="padding: 0;width: 24%;">
+					<div class="left-list">
+						<h1 class="iconfont icon-weibiaoti35">产品分类</h1>
+						<ul class="product-list">
+						{pc:content action="category" catid="6" num="99" order="listorder ASC"}
+							{loop $data $r}
+							<li>
+								<div class="list-item">
+									<h1 class="{$r[catdir]}">
+										<span class="iconfont icon-jiantou-copy fr"style="padding: 0 1rem;"></span>
+										<a href="{$r[url]}" class="">{$r[catname]}</a>
+									</h1>
+									{pc:content action="category" catid="$r[catid]" num="3" order="listorder ASC"}
+									<div class="item-subtitle">
+										<p>
+											{loop $data $r}
+											<a href="{$r[url]}">{$r[catname]}</a>
+											{/loop}
+										</p>
+									</div>
+									{/pc}
+								</div>
+							</li>
+							{/loop}
+						{/pc}
+						</ul>
+					</div>
+				</div>
+				<div class="right-part col-xs-9" >
+					<div class="show-head clearfloat">
+						<div class="l-tittle fl">
+							<font>+</font>
+							<span>所有产品</span>
+						</div>
+						<div class="r-tittle fr">
+							<a href="index.html">首页</a><span style="color: #333;">></span><a href="{$CATEGORYS[$catid][url]}">{catpos($catid)}</a>
+						</div>
+					</div>
+					<div class="list-show clearfloat">
+					{pc:get sql="SELECT * FROM `v9_news` where keywords like '%$q%' order by id DESC " num="10" page="$page" return="data"}
+						{if $data==""}
+						<p style="text-align:center; font-size:12px; ">没有找到和<font color="#FF0000;" style="text-decoration:underline; font-weight:bold; " >{$q}</font>相关的文章，请减短关键词或换个词组！</p>
+						{/if}
+						{loop $data $v}
+						<div class="show-item col-md-4 col-sm-6">
+							<a href="{$v[url]}">
+								<div class="show-box">
+									<div class="hover">
+										<h2>{$v[title]}</h2>
+									</div>
+									<img src="{$v[thumb]}" alt="">
+								</div>
+							</a>
+						</div>
+						{/loop}
+					{/pc}
+					</div>
+					<div id="pages"style="text-align: center;">{$pages}</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+{template "content","footer"}

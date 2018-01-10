@@ -1,0 +1,47 @@
+{template "content","header"}
+<!-- slider --> 
+	<div id="myCarousel" class="carousel slide">
+		<ol class="carousel-indicators">
+		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		    <li data-target="#myCarousel" data-slide-to="1"></li>
+		    <li data-target="#myCarousel" data-slide-to="2"></li>
+		    <li data-target="#myCarousel" data-slide-to="3"></li>
+		</ol>   
+		<div class="carousel-inner">
+		    <div class="item active">
+		        <a><img src="{IMG_PATH}img/index/slider1.jpg" width="100%" alt="First slide"></a>
+		    </div>
+		    <div class="item">
+		        <a><img src="{IMG_PATH}img/index/slider2.jpg" width="100%" alt="Second slide"></a>
+		    </div>
+		    <div class="item">
+		        <a><img src="{IMG_PATH}img/index/slider3.jpg" width="100%" alt="Third slide"></a>
+		    </div>
+		    <div class="item">
+		        <a><img src="{IMG_PATH}img/index/slider4.jpg" width="100%" alt="fourth slide"></a>
+		    </div>
+		</div>
+		<div class="arrow">
+	    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+	    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		</div>  
+	</div>		
+<!-- news-details -->		
+	<div class="news-details">
+		<div class="container">
+			<h1><a href="index.html#s4">{catpos($catid)}</a>{$title}</h1><hr>
+			<dl>
+				<dt>{$title}</dt>
+				<dd>发表时间：{$inputtime}</dd>
+			</dl>
+			<div class="paragraph">
+				{$content}
+			</div>
+			<div class="share-icon clearfloat">
+				<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+			</div>
+		</div>
+	</div>
+		
+{template "content","footer"}

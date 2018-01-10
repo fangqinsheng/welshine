@@ -1,0 +1,51 @@
+<!--<div id="ajax_list" >   
+{pc:content action="lists" catid="10" order="id DESC" thumb="" moreinfo="1" }   
+{loop $data $n $r}   
+<li><a href="{$r['url']}" title="{$r['title']}">{$r['title']}</a></li>   
+{/loop}   
+{/pc}   
+</div>   -->
+<div class="ditails-wrap" id="ajax_list">
+	<ul>
+	{pc:content action="position" posid="18" num="5" order="listorder" return="pdata"}
+	{loop $pdata $p}
+	{php $cid = $p[catid]} 
+	{pc:content action="lists" catid="$cid"  moreinfo="1" num="1" return="cdata"}
+	{loop $cdata $n $r}
+		<li class="clearfloat">
+			<div class="productsPic">
+				<a href="{$r[url]}"><img src="{$r[thumb]}" width="100%"/></a>
+			</div>
+			<div class="productsTxt">
+				<a href=""><h1>【{$CATEGORYS[$r[catid]][catname]}】<span>{$r[title]}</span></h1></a>
+				<p class="product-pricce">￥{$r[money]}</p>
+				<p>成交<span>168</span>次</p>
+			</div>
+		</li>
+	{/loop}
+	{/pc}
+	{/loop}
+	{/pc}
+	</ul>
+</div>
+<div id="pages" class="pager ajaxhomelist" style="text-align: center;">   
+    {$pages}   
+</div>   
+<script type="text/javascript">   
+    $(function(){   
+            var curr_page = parseInt($('.ajaxhomelist span').text());   
+            $('.ajaxhomelist a').click(function(event){   
+                event.preventDefault();   
+                _page = $(this).text();   
+                if(_page == "下一页") _page = curr_page+1;   
+                if(_page == "上一页") _page = curr_page-1;   
+                $('.contain_ajaxhomelist').load(   
+                    "{siteurl($siteid)}/index.php?a=homeajaxlist&page="+_page,   
+                    function(){   
+                                //这个是让页面滚动到列表上方   
+                                $("html,body").animate({scrollTop:$("#conter").offset().top},1000);   
+                           
+                    });   
+            });           
+    });   
+</script>  

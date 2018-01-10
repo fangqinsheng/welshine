@@ -1,0 +1,209 @@
+html{height: 100%;width: 100%;font-size: 62.5%;overflow-x: hidden;font-size: 10px;/*默认字体大小为16px，1rem=10px*/}
+*{padding: 0;margin: 0;}
+a{text-decoration: none;color: #333333}
+img{vertical-align: top;display: block;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+input,button,textarea,select{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}
+input{-web-kit-appearance:none;-moz-appearance: none;outline: 0;margin: 0;padding: 0;}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #333; font-size: 14px; 
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #333; font-size: 14px;
+}
+
+input:-ms-input-placeholder{
+    color: #333; font-size: 14px;
+}
+
+input::-webkit-input-placeholder{
+    color: #333; font-size: 14px;
+}
+
+.index-bg{
+    background: url(../img/index-bg.jpg);background-size: cover;
+    width: 100%;height: 100%;overflow: hidden;
+    position: fixed;z-index: -1;   
+}
+.product{
+    h1{
+        font-size: 3rem;color: #005ABC;line-height: 1;
+        text-align: center;padding: 1em 0;margin: 0; 
+        span{
+            font-size: 2.8rem;color: #c0bdba;
+        }   
+    }
+}
+.left-hr{
+    .container{
+        h1{
+            font-size: 3rem;
+            color: #005bac;
+            line-height: 1.2;
+            span{
+                font-size: 2.8rem;
+                color: #c0bdba;
+            }
+            @media screen and (max-width:380px) {
+                span{display: none;}   
+            } 
+        } 
+        hr{
+            border: 1px solid #005ABC;
+            width: 9.6rem;
+            margin-top: 0.3em;
+        }      
+    }
+}
+
+
+.menu{
+    width: 100%;margin: 0 auto;padding: 0;
+    position: relative;z-index: 100;
+    display: none;
+    background: rgba(9,119,188,1); 
+    .container{
+        .subMenu{
+            font-weight: 400;
+            .subNavBtn{
+                display: block;
+                font-size: 14px;
+                padding: 1.1em 0;
+                text-align: center;
+                color: #fff;
+                transition: 0.6s ease-in-out all; 
+            }
+            .subNavBtn:hover{background: #1783c7;}
+        }
+        .search-box{
+           margin: 0.7em 0;
+           input{padding: 0.35em 0.5em;float: right;}
+           input[type="text"]{width: 40%;transition: 0.8s all ease-in-out;}
+           input[type="text"]:focus{width: 70%;}
+       }
+    }
+}
+@media only screen and (min-width: 768px) {               
+    .menu{display: block;}
+} 
+@media only screen and (max-width: 768px) {
+    .subNavBtn{width: 100%;background: rgba(9,119,188,0.9);border-bottom: 1px solid #e3e3e3;opacity: 0;}
+}
+@media only screen and (max-width: 1000px) {
+    .search-box{display: none;}
+    .col-md-8{padding: 0;}
+}
+
+
+
+/*brands*/
+.brands{
+    height: 900px;width: 100%;
+    background:linear-gradient(-80deg,rgb(255,255,255) 630px,rgba(70,70,70,0.6) 630px);
+    background:-o-linear-gradient(-80deg,rgb(255,255,255) 630px,rgba(70,70,70,0.6)630px);
+    background:-moz-linear-gradient(-80deg,rgb(255,255,255) 630px,rgba(70,70,70,0.6) 630px);
+    background:-webkit-linear-gradient(-80deg,rgb(255,255,255) 630px,rgba(70,70,70,0.6)630px);
+    .brands-content{
+        padding:5rem  3rem;
+        h1{
+//          opacity: 0;
+//          transition: 2s all ease-in-out;
+//          transform: translate(-100px,0);
+        }
+        hr{
+//          opacity: 0;
+//          transition: 2s all ease-in-out;
+//          transform: translate(-100px,0);
+        }
+        .brands-text{
+//          opacity: 0;
+//          transition: 2s all ease-in-out;
+//          transform: translate(-100px,0);   
+            margin-top: 3rem;    
+            p{
+                text-indent: 2em;
+                font-size: 1em;
+                line-height: 1.8;
+                word-break: break-word;
+                text-align: justify;
+                span{
+                    margin-left: 5em;
+                }
+            }
+            ul{
+                li{font-size: 1rem;}
+            }
+        }
+        @media screen and (max-width:768px){
+            .brands-text{width: 100%;margin-left: 0;margin: 0 auto;}
+        }
+        .brands-pic{
+//          opacity: 0;
+//          transition: 2s all ease-in-out;
+//          transform: translate(100px,0);
+            margin-top: -2rem;      
+            img{
+                margin-top: 2em;
+                margin-left: 3em;
+            }
+        }
+        @media screen and (max-width:992px){
+            .brands-pic{
+                margin-top: 5em;
+                img{width: 100%;display: none;}
+            }
+        }
+        @media screen and (max-width:768px){
+            .brands-pic{
+                img{width: 80%;margin-left: 0;margin: 0 auto;}
+            }
+        }
+    }
+    @media screen and (max-width:768px){
+        .brands-content{
+            padding: 2rem;
+        }
+    }
+    .counter{
+        padding: 8em 0;
+//      background: rgba(70,70,70,0.6); 
+        .container{
+            .counter-box{
+                .counter-col{
+                    text-align: center;
+    //              opacity: 0;
+                    transition: 3s all ease-in-out;
+                    font-size: 1.7rem;
+                    .counter-icon{
+    //                  transition: 3s all ease-in-out;
+    //                  transform: translateY(-20px);
+                        i{
+                          font-size: 3.6em;  
+                        }
+                    }
+                    #counter-number{
+                        font-size: 1.6em;
+    //                  transition: 3s all ease-in-out;
+    //                  transform: translateX(-20px);
+                    }
+                    #counter-title{
+    //                  transform: translateX(20px);
+    //                  transition: 3s all ease-in-out;
+                    }
+                    span{
+                        font-size: 1em;
+                        display: block;
+                        color: #FFFFFF;
+                    }
+                    .timer{
+                        font-size: 1.8em;
+                    }
+                }
+            }
+        }    
+    }
+}
+
+/*counter*/

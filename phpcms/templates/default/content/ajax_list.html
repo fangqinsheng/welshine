@@ -1,0 +1,44 @@
+<!--<div id="ajax_list" >   
+{pc:content action="lists" catid="10" order="id DESC" thumb="" moreinfo="1" }   
+{loop $data $n $r}   
+<li><a href="{$r['url']}" title="{$r['title']}">{$r['title']}</a></li>   
+{/loop}   
+{/pc}   
+</div>   -->
+<div id="ajax_list" class="list-show clearfloat">
+{pc:content action="lists" catid="$catid" num="9" siteid="$siteid" order="listorder ASC" page="$page"}
+	{loop $data $r}
+	<div class="show-item col-md-4 col-sm-6">
+		<a href="{$r[url]}">
+			<div class="show-box">
+				<div class="hover">
+					<h2>{$r[title]}</h2>
+				</div>
+				<img src="{$r[thumb]}" alt="">
+			</div>
+		</a>
+	</div>
+	{/loop}
+{/pc}
+</div>
+<div id="pages" class="pager ajaxhomelist" style="text-align: center;">   
+    {$pages}   
+</div>   
+<script type="text/javascript">   
+    $(function(){   
+            var curr_page = parseInt($('.ajaxhomelist span').text());   
+            $('.ajaxhomelist a').click(function(event){   
+                event.preventDefault();   
+                _page = $(this).text();   
+                if(_page == "下一页") _page = curr_page+1;   
+                if(_page == "上一页") _page = curr_page-1;   
+                $('.contain_ajaxhomelist').load(   
+                    "{siteurl($siteid)}/index.php?a=homeajaxlist&page="+_page,   
+                    function(){   
+                                //这个是让页面滚动到列表上方   
+                                $("html,body").animate({scrollTop:$("#conter").offset().top},1000);   
+                           
+                    });   
+            });           
+    });   
+</script>  

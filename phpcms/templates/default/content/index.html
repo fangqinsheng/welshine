@@ -1,0 +1,262 @@
+{template "content","header"}
+
+<!-- slider --> 
+
+	<div id="myCarousel" class="carousel slide">
+		<ol class="carousel-indicators">
+		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		    <li data-target="#myCarousel" data-slide-to="1"></li>
+		    <li data-target="#myCarousel" data-slide-to="2"></li>
+		    <li data-target="#myCarousel" data-slide-to="3"></li>
+		</ol>   
+		<div class="carousel-inner">
+		{pc:content  action="position" posid="19" order="listorder DESC" num="4"}
+			{loop $data $key $val}
+		    <div class="item {$val['description']}">
+		        <a><img src="{$val['thumb']}" width="100%" alt="{$val['alt']}"></a>
+		    </div>
+		    {/loop}
+		   {/pc}	 
+		</div>
+		<div class="arrow">
+	    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+	    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		</div>  
+	</div>
+
+	<div class="left-tittle s1 bg-white brands" id="brands">
+		<div class="container">
+			<div class="row">
+			{pc:content action="lists" catid="4" siteid="$siteid" moreinfo="1" order="listorder ASC"}
+				{loop $data $r}
+				<div class="brands-text col-md-6">
+					<h1>{$r[title]}<span> / {$r[money]}</span></h1><hr>
+					<p>{$r[content]}</p>
+				</div>
+				<div class="brands-pic col-md-6"><img src="{$r[thumb]}" width="90%"/></div>
+				{/loop}
+			{/pc} 
+			</div>
+		</div>
+	</div>
+
+	
+<!-- counter -->
+
+	<div class="counter" id="counter">
+		<div class="container">
+			<div class="counter-box row">
+			{pc:content action="lists" catid="3" num="4" moreinfo="1" order="listorder ASC"}
+				{loop $data $r}
+				<div class="col-xs-3 counter-col">
+					<span class="counter-icon">
+						<i class="iconfont">{$r[mes]}</i> 
+					</span>
+					<span class="timer" id="counter-number" data-to="{$r[content]}" data-speed="3500"></span>
+					<span id="counter-title">{$r[title]}</span>
+				</div>
+				{/loop}
+			{/pc}	
+			</div>
+		</div>
+	</div>
+
+	
+<!-- product -->	
+
+	<div class="product s2"id="product">
+		<div class="recommend container" id="recommend">
+			<div class="#">
+				<h1>推荐产品<span> / PRODUCT  DISPLAY</span></h1>
+				<div id="full" class="carousel slide" data-ride="carousel">
+			      	<div class="carousel-inner">
+		      		{pc:content action="category" catid="15" num="3" order="listorder ASC"}
+					  {loop $data $r}
+				      <ul class="row item cd-items cd-container {$r[description]}">
+			      	   {pc:content action="lists" catid="$r['catid']" num="4" order="listorder ASC" return="data2"}
+    					{loop $data2 $v}
+				        <li class="cd-item">
+				        	<img src="{$v[thumb]}" width="100%" class="pimg" alt="Item Preview"/>
+				       		<a href="#0" class="cd-trigger">快速预览</a>
+				        </li>
+				        {/loop}
+    				  {/pc}
+				      </ul>
+				      {/loop}
+				    {/pc}
+				      <a class="carousel-control left" href="#full" data-slide="prev">&lsaquo;</a>
+	    			  <a class="carousel-control right" href="#full" data-slide="next">&rsaquo;</a>
+				  	</div>
+			    </div>  
+			</div>
+		</div>	
+	    <script src="{JS_PATH}js/index.js"></script>
+		<div class="hot container" id="hot">
+			<h1>热销产品<span> / PRODUCT   DISPLAY</span></h1>
+			<div class="row">
+			{pc:content action="category" catid="16" num="7" order="listorder ASC" moreinfo="1"}
+				{loop $data $r}
+				<div class="col-sm-3">
+					<img src="{$r[image]}" style="{$r[Encatname]}"/>
+					<div class="img-mask">
+						<div class="mask-content">
+							<h4>{$r[catname]}</h4>
+							<p class="describe">{$r[description]}</p>
+							<p><a href="{$r[url]}"><strong>了解详情</strong></a></p>
+						</div>
+					</div>
+				</div>
+				{/loop}
+			{/pc}	
+			</div>	
+		</div>
+	</div>
+
+	<!--<embed src="https://imgcache.qq.com/tencentvideo_v1/playerv3/TPout.swf?max_age=86400&v=20161117&vid=r0530pqhpbl&auto=0" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>-->
+	
+<!-- video -->	
+	<section class="video" id="video">
+		<div class="video-mask">
+			<div class="container">
+				<div class="row">
+					<div class="video-box clearfloat">
+						<div class="col-sm-12">
+							<div class="video-controls">
+								<div class="video-mask"></div>
+								<div class="video-btn">
+									<a href="javascript:void(0);"><img src="{IMG_PATH}/img/index/controls.png" width="120" height="120"/></a>
+								</div>
+							</div>
+							<p id="video-source" width="100%">
+								<iframe frameborder="0" width="1000" height="500" src="https://v.qq.com/iframe/player.html?vid=r0530pqhpbl&tiny=0&auto=1" allowScriptAccess="always" type="application/x-shockwave-flash" allowfullscreen></iframe>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+<!-- cate -->
+<div class="product s3" id="cate">
+	<h1>产品分类<span> / CATE   DISPLAY</span></h1>
+	<ul class="nav">
+		<li class="active1" data-filter="all">全部</li>
+		<li data-filter="1">厨房</li>
+		<li data-filter="2">楼面</li>
+		<li data-filter="3">周转</li>
+		<li data-filter="4">其他</li> 
+	</ul> 	
+	<div class="cate-content container">
+		<div class="cate-box row">
+		{pc:content action="category" catid="6" num="9" siteid="$siteid" order="listorder ASC"}
+			{loop $data $r}
+			<div class="filtr-item col-md-4 col-xs-6" id="last-item" data-category="{$r[Encatname]}">
+				<a href="{$r[url]}">
+					<div class="item-box">
+						<div class="hover">
+							<h2>{$r[catname]}</h2>
+							<h3>{$r[description]}</h3>
+						</div>
+						<img src="{$r[image]}" alt="">
+					</div>
+				</a>
+			</div>
+			{/loop}
+		{/pc}
+		</div>
+	</div>
+	<p class="more-icon" style="text-align: center;padding: 1em 0;">
+		<i class="iconfont icon-shizi"></i>
+	</p>
+</div>	
+	
+<!-- news -->
+	<div class="left-hr s4" id="news">
+		<div class="container">
+			<div class="news-header row">
+				<div class="left-tittle col-md-8 col-sm-8 col-xs-8">
+					<h1>行业资讯<span> / NEWS  DISPLAY</span></h1><hr>
+				</div>
+				<ul class="news-btn col-sm-2 col-sm-offset-2">
+					<li><a href="javascript:void(0)" class="prev-btn"></a></li>
+					<li><a href="javascript:void(0)" class="next-btn" style="background-position-x: -47px;"></a></li>
+				</ul>
+			</div>
+			<div class="news-bottom clearfix">
+			{pc:content action="lists" catid="7" num="4" order="id DESC" moreinfo="1"}
+				<div class="news-line"></div>
+				<div class="content-box"> 
+					{loop $data $r}
+					<li class="news-content clearfix">
+						<div class="news-pic col-md-2 col-sm-3"><img src="{$r[thumb]}" width="100%"/></div>
+						<div class="news-text col-md-9">
+							<h1>{$r[title]}</h1>
+							<h2><span>{date('Y-m-d H:i:s',$r[inputtime])}</span>&emsp;&emsp;发布者：<span>{$r[username]}</span></h2>
+							<p>{$r[description]}</p>
+							<p style="margin-top: 6px;"><a href="{$r[url]}">查看详情</a></p>
+						</div>
+					</li>
+					{/loop}
+				</div>
+			{/pc}	
+			</div>	
+		</div>
+	</div>				
+					
+
+<!-- footer -->
+
+	<footer>
+		<div class="s5" id="contact" style="">
+			<div class="contact-content">
+				<div class="container">
+					<div class="row">
+						<div class="contact-list col-md-6" style="">
+							<div class="left-tittle" style="">
+								<h1>联系我们<span> / CONTACT   US</span></h1><hr>
+							</div>
+							<p>营业时间为星期一至星期六早上9点到下午6点，您的反馈是我们不断改善的动力。</p>
+							<ul>
+								<li><i class="iconfont">&#xe60e;</i>总部地址：广州市海珠区昌岗中路166号富盈国际大厦1218室</li>
+								<li><i class="iconfont">&#xe67f;</i>联系电话：400-838-8198</li>
+								<li><i class="iconfont">&#xe64a;</i>传真：020-89577250</li>
+								<li><i class="iconfont">&#xe660;</i>EMAIL：ｇz@welshine.com</li>
+							</ul>
+						</div>
+						<div class="contact-email col-md-6" style="">
+							<form action="mailto:1105813323@qq.com" enctype="text/plain"> 
+								<div class="col-md-6">
+									<input name="cc" type="email" placeholder="邮箱">
+								</div>
+								<div class="col-md-6">
+									<input name="subject" type="text" placeholder="标题">
+								</div>
+								<div class="col-md-12">
+									<textarea name="body" placeholder="麻烦附上您的联系方式，以方便与您取得联系！" style="width: 100%;margin-bottom: 1em;"></textarea>
+								</div>
+								<div class="col-md-8">
+									<input type="submit" name="submit" id="submit" value="确认发送" />
+								</div>
+							</form> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="public-footer"style="transform: translateY(60px);opacity: 0;transition:1.2s all ease-in-out;">
+			<p>建议使用IE4.0以上版本<br />COPYRIGHT © 2004 <a>www.welshine.com</a> Corporation. All rights reserved.<a>版权所有</a> 严禁拷贝<br />
+Powered by <a>快扬网</a><br /><a>粤ICP备11003101号</a></p>
+		</div>
+	</footer>	 
+</body>
+<script src="{JS_PATH}js/jquery.filterizr.js" type="text/javascript" charset="utf-8"></script>  <!-- 图片筛选差价 -->
+<script type="text/javascript">
+	$(function() {
+		$('.cate-box').filterizr();
+		$('.nav li').on('click', function() { 
+			$(this).toggleClass('active1').siblings().removeClass('active1');
+		});
+	});
+</script>
+</html>

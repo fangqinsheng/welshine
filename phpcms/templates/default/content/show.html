@@ -1,0 +1,206 @@
+{template "content","header"} 
+<style type="text/css">
+#myCarousel .carousel-inner .item img{height: 400px;} 	
+</style>
+<!-- slider --> 
+	<div id="myCarousel" class="carousel slide">
+		<ol class="carousel-indicators">
+		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		    <li data-target="#myCarousel" data-slide-to="1"></li>
+		    <li data-target="#myCarousel" data-slide-to="2"></li>
+		    <li data-target="#myCarousel" data-slide-to="3"></li>
+		</ol>   
+		<div class="carousel-inner">
+		{pc:content  action="position" posid="19" order="listorder DESC" num="4"}
+			{loop $data $key $val}
+		    <div class="item {$val['description']}">
+		        <a><img src="{$val['thumb']}" width="100%" alt="{$val['alt']}"></a>
+		    </div>
+		    {/loop}
+		   {/pc}	 
+		</div>
+		<div class="arrow">
+	    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+	    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		</div>  
+	</div>
+<!-- 热搜关键词 -->
+	<div class="search">
+		<div class="container">
+			<div class="search-content clearfloat">
+				<ul class="search-keys clearfloat" style="float: left;">
+					<li>热搜关键词：</li>
+					<li><a href="#">托盘</a></li>
+					<li><a href="#">保鲜盒</a></li>
+					<li><a href="#">服务车</a></li>
+					<li><a href="#">整理箱</a></li>
+					<li><a href="#">筛</a></li>
+				</ul>
+				<p style="float: right;">
+					<a href="#">首页</a>/<a href="#">产品中心</a>/<a href="#">所有产品</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="details-box">
+		<div class="wrap clearfloat">
+			<div class="jq22-container" id="slide" style="width: 60%;float: left;">
+				<div class="jq22-content bgcolor-3">
+					<ul class="pgwSlideshow">
+				    {loop $slide $v}
+						<li><img src="{thumb($v[url],800,600)}" alt="{$v[alt]}"></li>
+					{/loop}
+					</ul>
+				</div>
+				<div class="click-icon clearfloat">
+					<div class="collect-icon">
+						<i class="iconfont">&#xe6b0;</i>
+						<a href="">添加收藏</a>
+						<span>(3359)</span>
+					</div>
+					<div class="bdsharebuttonbox share-icon"><a href="#" class="bds_more" data-cmd="more">分享到：</a></div>
+					<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+				</div>
+			</div>
+			{if $money}
+			<form id="formcar" name="formcar" method="post" style="width: 40%;float: right;" action="{APP_PATH}index.php?m=order&c=cart&a=add&a_id={$id}&a_catid={$catid}" target="_blank">
+			<div class="right-text">
+				<h2 style="color: #005ABC;">【{$CATEGORYS[$catid][catname]}】<span>{$title}</span><input type="hidden" name="a_title" value="【{$CATEGORYS[$catid][catname]}】" /></h2>
+				<dl class="right-price">
+					<dt>价格<span>{$money}<input type="hidden" name="money" value="{$money}" />元/套</span></dt>
+					<dd>使用方便，可叠放使用。</dd>
+				</dl>
+				<div class="right-scoring">
+					<div class="scoring-box clearfloat">
+						<div class="scoring-box-txt">评分</div>
+						<div class="scoring-star-box">
+							<div class="scoring-star-txt">4.96</div>
+							<div class="scoring-star">
+								
+							</div>
+							<div class="scoring-star-comment">(3359条评论)</div>
+						</div>
+						<ul class="scoring-box-comment">
+							<li>服务态度：<strong>4.97</strong>分</li>
+							<li>工作速度：<strong>4.96</strong>分</li>
+							<li>完成质量：<strong>4.95</strong>分</li>
+						</ul>
+					</div>
+					<div class="scroing-info clearfloat">
+						<div class="scoring-complete-time">
+							订单平均完成周期<strong>9天</strong>
+						</div>
+						<div class="scoring-respon-time">
+							订单平均响应时间<strong>2小时</strong>
+						</div>
+					</div>
+				</div>
+				<div class="right-number">
+					<dl class="clearfloat">
+						<dt>数量</dt>
+						<dd>
+							<span>
+								<input type="text" name="quantity" value="1" style="margin-left: 1em; border: 1px solid #e5e5e5;padding: 2px;width: 36px;"/>
+							</span>
+							<em style="font-style: normal;">库存：<span>沽清</span></em>
+						</dd>
+					</dl>
+				</div>
+				<div class="right-btn">
+					<span><a href="javascript:void(0)" target="" onclick="wrong()">确认购买</a></span>
+					<span><a href="javascript:void(0)" target="" onclick="wrong()">确认购买</a></span>
+					<!--<span><button type="submit" name="button" >添加购物车</button></span>
+					<span><a href="{APP_PATH}index.php?m=order&c=cart&a=init" target="_blank">确认购买</a></span>-->
+				</div>
+				<div class="right-product-save">
+					<p>荣获ISO9001：2008国际质量管理体系认证和QS认证，产品质量安全可放心使用！</p>
+				</div>
+				<ul class="right-product-icon">
+					<li style=""></li>
+					<li style="background-position-x: -82px;"></li>
+					<li style="background-position-x: -164px;"></li>
+					<li style="background-position-x: -246px;"></li>
+				</ul>
+			</div>
+			</form>
+			{/if}
+		</div>
+	</div>
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="{JS_PATH}js/pgwslideshow.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('.pgwSlideshow').pgwSlideshow({
+		    	transitionEffect:'fading',
+		    	autoSlide:true
+		    });
+		});
+	</script>
+<!-- info -->
+	<div class="details-info">
+		<div class="wrap clearfloat">
+			<div class="left-info" style="width: 74%;float: left;padding-top: 10px;">
+				<div class="info-box">
+					<div class="info-header">
+						<ul class="clearfloat">
+							<li class="info-active first"><a href="javascript:void(0)">产品参数</a></li>
+							<li class="second"><a href="javascript:void(0)">产品特色</a></li>
+							<li class="three"><a href="javascript:void(0)">售后保障</a></li>
+						</ul>
+					</div>
+					<div class="info-content">
+						<div class="info-col info-col1 info-content-active">
+							<div class="content-box">
+								{$content}
+							</div>
+						</div>
+						<div class="info-col info-col2">
+							<div class="content-box">
+								<p>{$parameter}</p>
+							</div>
+						</div>
+						<div class="info-col info-col3">
+							<div class="content-box">
+								<p>{$content}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="info-disclaimer">
+					<h3 class="info-tittle">免责声明</h3>
+					<p>惠而信商用设备有限公司所生产的所有产品均什么很么，文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案文案</p>
+				</div>
+			</div>
+			<div class="right-info" style="width: 25%;float: right;">
+				<div class="info-brands">
+					<h5 class="info-tittle">惠而信商用设备有限公司</h5>
+					<div class="info-contact">
+						<a href=""><img src="{IMG_PATH}img/details/btn2.png"/></a>
+						<a href=""><img src="{IMG_PATH}img/details/btn1.png"/></a></a>
+					</div>
+					<p class="info-time">周一至周六 09：00~18：00</p>
+					<div class="other-contact">
+						<h6>其他联系方式</h6>
+						<p>惠而信前台：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1105813323&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1105813323:51" alt="点击联系我" title="点击联系我"/></a></p>
+					</div>
+				</div> 
+				
+				<div class="info-map">
+					{template "content","smallmap"}
+					<div class="gothere">
+						到这里去<i class="iconfont">&#xe60e;</i>
+					</div>
+				</div>
+				<div class="other-products">
+					<h4>本店其他产品<a href="">换一批</a></h4>
+					<div id="conter" >   
+			           <div class="contain_ajaxhtmllist" >   
+			               {template "content","ajax_list1"}          
+			           </div>   
+				    </div>
+				</div>
+			</div> 
+		</div>
+	</div>
+	
+{template "content","footer"}

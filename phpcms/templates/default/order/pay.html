@@ -1,0 +1,142 @@
+{template 'member', 'header'}
+<script type="text/javascript">
+<!--
+$(function(){
+	$.formValidator.initConfig({autotip:true,formid:"myform",onerror:function(msg){}});
+	$("#contactname").formValidator({onshow:"请输入收货人",onfocus:"收货人不能为空"}).inputValidator({min:1,max:999,onerror:"收货人不能为空"});
+	$("#address").formValidator({onshow:"请输入收货地址",onfocus:"收货地址不能为空"}).inputValidator({min:1,max:999,onerror:"收货地址不能为空"});
+	$("#telephone").formValidator({onshow:"请输入电话",oncorrect:"格式正确"}).regexValidator({regexp:"^(\d{11})|((([0\\+]\\d{2,3}-)?(0\\d{2,3})-)?(\\d{7,8})(-(\\d{3,}))?)$",onerror:"错误的电话格式"});	
+	$("#email").formValidator({onshow:"请输入email",oncorrect:"格式正确"}).regexValidator({regexp:"email",datatype:"enum",onerror:"错误的emai格式"});	
+	$("#code").formValidator({onshow:"请输入验证码",onfocus:"验证码不能为空"}).inputValidator({min:1,max:999,onerror:"验证码不能为空"}).ajaxValidator({
+	    type : "get",
+		url : "",
+		data :"m=pay&c=deposit&a=public_checkcode",
+		datatype : "html",
+		async:'false',
+		success : function(data){	
+            if(data == 1)
+			{
+                return true;
+			}
+            else
+			{
+                return false;
+			}
+		},
+		buttons: $("#dosubmit"),
+		onerror : "验证码错误",
+		onwait : "验证中"
+	});
+})
+function myform_submit(){
+	var logistics_l = $("input:radio[name='logistics_type']:checked").length;
+	if(logistics_l==0){
+		alert('请选择配送方式');
+		return false;
+	}
+
+	var pay_l = $("input:radio[name='pay_type']:checked").length;
+	if(pay_l==0){
+		alert('请选择充值方式');
+		return false;
+	}
+
+	return true;
+}
+//-->
+</script>
+<div id="memberArea">
+{template 'member', 'left'}
+<div class="col-auto">
+
+<div class="col-1 ">
+<h6 class="title">在线支付</h6>
+<div class="content">
+<form name="myform" action="{APP_PATH}index.php?m=pay&c=order&a=pay_recharge" method="post" id="myform" onsubmit="return myform_submit();" >
+<table width="100%" cellspacing="0" class="table_form">
+    <!-- <tr>
+       <th width="80">余额：</th>        
+       <td style="padding:0 0 0 10px"><font style="color:#F00; font-size:22px;font-family:Georgia,Arial; font-weight:700">{$memberinfo['amount']}</font> 元</td>
+    </tr> -->
+  <tr>
+	<th  width="100">订单号：</th>
+	<td>{$trade_sn}</td>
+  </tr>
+  <tr>
+	<th>订单价格：</th>
+	<td>{$total_money}</td>
+  </tr>
+  <tr>
+	<th>商品总数：</th>
+	<td>{$total_quantity}件</td>
+  </tr>
+
+	 <tr>
+       <th>配送方式：</th>
+       <td>     
+		{mk_logistics_btn($logistics_types)}
+	   </td>
+     </tr>
+	 <tr>
+       <th>充值方式：</th>
+       <td>     
+		{mk_pay_btn($pay_types)}
+	   </td>
+     </tr>
+
+     <tr>
+       <th>收货人：</th>
+       <td><input name="info[name]" type="text" id="contactname" size="30" value="{$memberinfo['username']}"  class="input-text"/></td>
+     </tr>
+     <tr>
+       <th>收货地址：</th>
+       <td><input name="info[address]" type="text" id="address" size="30" value="{$memberinfo['address']}"  class="input-text"/></td>
+     </tr>
+     <tr>
+       <th>电 话：</th>
+       <td><input name="info[telephone]" type="text" id="telephone" size="30" value="{$memberinfo['tel']}"  class="input-text"/> 格式：010-88888888或13888888888<span id="msgid1" ></span></td>
+     </tr>
+	 <tr>		
+		<th>E-mail：</th>
+		<td><input name="info[email]" type="text" id="email" size="30" value="{$memberinfo['email']}"  class="input-text"/></td>
+	 </tr>
+	 
+     <tr>
+       <th>备  注：</th>
+       <td><textarea name="info[usernote]"  id="usernote" rows="5" cols="50" value=></textarea></td>
+     </tr>
+     <tr>
+       <th>验证码：</th>
+       <td><input name="code" type="text" id="code" size="10"  class="input-text"/> {form::checkcode('code_img','4','14',110,30)}</td>
+     </tr>
+     <tr>
+       <td></td>
+       <td colspan="2"><label>
+         <input type="submit" name="dosubmit" id="dosubmit" value="确 定" class="button"/>
+         </label></td>
+     </tr>
+   </table>
+   </form>
+   </div>
+   <span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+   </div>
+   </div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".payment-show").each(function(i){
+		if(i==0){
+			$(this).addClass("payment-show-on");
+		}
+   		$(this).click(
+			function(){
+				$(this).addClass("payment-show-on");
+				$(this).siblings().removeClass("payment-show-on");
+			}
+		)
+ 	});
+	
+})
+
+</script>
+{template 'member', 'footer'}

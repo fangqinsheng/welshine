@@ -1,0 +1,126 @@
+{template "content","header"}
+<!-- 热搜关键词 -->
+	<div id="myCarousel" class="carousel slide">
+		<ol class="carousel-indicators">
+		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		    <li data-target="#myCarousel" data-slide-to="1"></li>
+		    <li data-target="#myCarousel" data-slide-to="2"></li>
+		    <li data-target="#myCarousel" data-slide-to="3"></li>
+		</ol>   
+		<div class="carousel-inner">
+		    <div class="item active">
+		        <a><img src="{IMG_PATH}img/index/slider1.jpg" width="100%" alt="First slide"></a>
+		    </div>
+		    <div class="item">
+		        <a><img src="{IMG_PATH}img/index/slider2.jpg" width="100%" alt="Second slide"></a>
+		    </div>
+		    <div class="item">
+		        <a><img src="{IMG_PATH}img/index/slider3.jpg" width="100%" alt="Third slide"></a>
+		    </div>
+		    <div class="item">
+		        <a><img src="{IMG_PATH}img/index/slider4.jpg" width="100%" alt="fourth slide"></a>
+		    </div>
+		</div>
+		<div class="arrow">
+	    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+	    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		</div>  
+	</div>
+	
+	<div class="search">
+		<div class="container">
+			<div class="search-content clearfloat">
+				<ul class="search-keys clearfloat" style="">
+					<li>热搜关键词：</li>
+					<li><a href="#">托盘</a></li>
+					<li><a href="#">保鲜盒</a></li>
+					<li><a href="#">服务车</a></li>
+					<li><a href="#">整理箱</a></li>
+					<li><a href="#">筛</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="product-box">
+		<div class="container clearfloat">
+			<div class="row">
+				<div class="left-part col-xs-3" style="padding: 0;width: 24%;">
+					<div class="left-list">
+						<h1 class="iconfont icon-weibiaoti35">产品分类</h1>
+						<ul class="product-list">
+						{pc:content action="category" catid="6" num="99" order="listorder ASC"}
+							{loop $data $r}
+							<li>
+								<div class="list-item">
+									<h1 class="{$r[catdir]}">
+										<span class="iconfont icon-jiantou-copy fr"style="padding: 0 1rem;"></span>
+										<a href="{$r[url]}" class="">{$r[catname]}</a>
+									</h1>
+									{pc:content action="category" catid="$r[catid]" num="3" order="listorder ASC"}
+									<div class="item-subtitle">
+										<p>
+											{loop $data $r}
+											<a href="{$r[url]}">{$r[catname]}</a>
+											{/loop}
+										</p>
+									</div>
+									{/pc}
+								</div>
+								<!--<div class="item-hover">
+									<div class="hover-box">
+										<div class="fl left-text">
+											<h2>{$r[catname]}</h2>
+											{pc:content action="category" catid="$r[catid]" num="66" order="listorder ASC"}
+											{loop $data $r}
+											<div class="description">sad sad sad asd asd </div><hr />
+											<ul>
+												<li><a href="{$r[url]}">{$r[catname]}</a></li>
+											</ul>
+											{/loop}
+											{/pc}
+										</div>
+										<div class="fr right-pic"></div>
+									</div>
+								</div>-->
+							</li>
+							{/loop}
+						{/pc}
+						</ul>
+					</div>
+				</div>
+				<div class="right-part col-xs-9" >
+					<div class="show-head clearfloat">
+						<div class="l-tittle fl">
+							<font>+</font>
+							<span>所有产品</span>
+						</div>
+						<div class="r-tittle fr">
+							<a href="index.html">首页</a><span style="color: #333;">></span><a href="{$CATEGORYS[$catid][url]}">{catpos($catid)}</a>
+						</div>
+					</div>
+					<div class="list-show clearfloat">
+					{pc:content action="category" catid="$catid" num="9" siteid="$siteid" order="listorder ASC"}
+						{loop $data $r}
+						<div class="show-item col-md-4 col-sm-6">
+							<a href="{$r[url]}">
+								<div class="show-box">
+									<div class="hover">
+										<h2>{$r[catname]}</h2>
+									</div>
+									<img src="{$r[image]}" alt="">
+								</div>
+							</a>
+						</div>
+						{/loop}
+					{/pc}
+					</div>
+					<div id="pages"style="text-align: center;">{$pages}</div>
+					<!--<div class="page-list">
+						总共5页/当前是第1页<a href="#" class="p-active">首页</a><a href="#" class="p-active">上一页</a><a href="#">1</a><a href="#">2</a>
+					<a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">下一页</a><a href="#">尾页</a>
+					</div>-->
+				</div>	
+			</div>
+		</div>
+	</div>
+{template "content","footer"}
